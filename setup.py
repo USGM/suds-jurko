@@ -580,7 +580,7 @@ if sys.version_info >= (2, 5):
 
 if sys.version_info >= (3,):
     # Integrate the py2to3 step into our build.
-    if using_setuptools:
+    if using_setuptools and os.environ.get('USE_2TO3'):
         extra_setup_params["use_2to3"] = True
     else:
         from distutils.command.build_py import build_py_2to3
