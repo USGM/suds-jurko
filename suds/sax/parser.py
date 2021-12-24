@@ -32,6 +32,7 @@ from suds.sax.attribute import Attribute
 from suds.sax.document import Document
 from suds.sax.element import Element
 from suds.sax.text import Text
+import six
 
 import sys
 from xml.sax import make_parser, InputSource, ContentHandler
@@ -126,7 +127,7 @@ class Parser:
         source = file
         if file is None:
             source = InputSource(None)
-            source.setByteStream(suds.BytesIO(string))
+            source.setByteStream(suds.BytesIO(six.ensure_binary(string)))
         sax, handler = self.saxparser()
         sax.parse(source)
         timer.stop()
